@@ -21,20 +21,26 @@ const Card = ({ item }) => {
         />
         <div className="card-body">
           <h5 className="card-title">{item.name}</h5>
-          <button
-            className="btn btn-primary"
-            onClick={() => navigate(`/character/${item.id}`)}
-          >
-            Ver más
-          </button>
-          <button
-            className={`btn ${isFavorite ? "btn-danger" : "btn-warning"}`}
-            onClick={() =>
-              dispatch({ type: "handleFavorites", payload: item.name })
-            }
-          >
-            {isFavorite ? "Quitar de favoritos" : "Agregar a favoritos"}
-          </button>
+          <div className="d-flex justify-content-between mt-3">
+            <button
+              className="btn btn-primary"
+              onClick={() => navigate(`/character/${item.id}`)}
+            >
+              Ver más
+            </button>
+            <button
+              className={`btn ${isFavorite ? "btn-danger" : "btn-warning"}`}
+              onClick={() =>
+                dispatch({ type: "handleFavorites", payload: item.name })
+              }
+            >
+              {isFavorite ? (
+                <i className="fa-solid fa-heart"></i>
+              ) : (
+                <i className="fa-regular fa-heart"></i>
+              )}
+            </button>
+          </div>
         </div>
       </div>
     </div>
