@@ -1,32 +1,35 @@
-export const initialStore=()=>{
-  return{
+export const initialStore = () => {
+  return {
     characters: [],
-    planets: []
-  }
-}
+    planets: [],
+    favorites: []
+  };
+};
 
 export default function storeReducer(store, action = {}) {
-  switch(action.type){
+  switch (action.type) {
     case "getCharacters":
       return {
-        ...store, characters: action.payload
-      }
+        ...store,
+        characters: action.payload
+      };
     case "getPlanets":
       return {
-        ...store, planets: action.payload
-      }
+        ...store,
+        planets: action.payload
+      };
     case "handleFavorites":
-      let newFavorites = []
-      if(store.favorites.includes(action.paylaod)){
-        newFavorites = store.favorites.filter(favorite => favorite != action.payload)
-      }else {
-        newFavorites = [...store.favorites, action.payload]
+      let newFavorites = [];
+      if (store.favorites.includes(action.payload)) {
+        newFavorites = store.favorites.filter(fav => fav !== action.payload);
+      } else {
+        newFavorites = [...store.favorites, action.payload];
       }
-      return{
+      return {
         ...store,
         favorites: newFavorites
-      }
+      };
     default:
-      throw Error('Unknown action.');
-  }    
+      throw Error("Unknown action.");
+  }
 }
